@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,5 @@ Route::get('/create_token', [StudentController::class, 'create_token']);
 Route::post('/student_delete', [StudentController::class, 'destroy']);
 Route::post('/student_update', [StudentController::class, 'update']);
 Route::post('register',[UserController::class,'store']);
+Route::get('registerr',[UserController::class,'showToken']);
+Route::post('registerGame',[GameController::class,'store']);

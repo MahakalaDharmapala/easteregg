@@ -49,8 +49,8 @@ class GameController extends Controller
             return $validator->errors();
         }
 
-        $game = Game::create(['name' => $request->name,
-        'plataform' => $request->plataform,
+        $game = Game::create(['title' => $request->title,
+        'platform' => $request->platform,
         'classification' => $request->classification,
         'developer' => $request->developer,
         'releaseDay' => $request->releaseDay,
