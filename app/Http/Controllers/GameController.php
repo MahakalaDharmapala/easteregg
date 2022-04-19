@@ -93,7 +93,28 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:games,id',
+            'title' => 'required|unique:games|max:255',
+            'plataform' => 'required|max:20',
+            'classification' => 'required|max:5',
+            'developer' => 'required|max:255',
+            'releaseDay' => 'required|max:255',
+            'sinopsis' => 'required|max:500',
+        ]);
+        if($validator->fails()){
+            return $validator->errors();
+        }
+
+
+        Game::where('id',$request->id)
+        ->update(['title'=> $request->title,
+                          'plataform'=> $request->plataform,
+                          'classification'=> $request->classification,
+                          'developer'=> $request->developer,
+                          'releaseDay'=> $request->releaseDay,
+                          'sinopsis'=> $request->sinopsis/*,
+                        'image'=> $request->image*/]);
     }
 
     /**

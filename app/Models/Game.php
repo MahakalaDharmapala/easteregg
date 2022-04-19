@@ -20,6 +20,6 @@ class Game extends Model
 
     //Relación uno a muchos
     public function shows(){
-        return $this->hasMany('App\Models\Show');
+        return $this->hasMany('App\Models\Tickets');
     }
 }
