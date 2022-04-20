@@ -15,7 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('userss')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
          $table->foreignId('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
 
             $table->float('quantity');

@@ -44,6 +44,7 @@ class GameController extends Controller
             'developer' => 'required|max:255',
             'releaseDay' => 'required|max:255',
             'sinopsis' => 'required|max:500',
+            'genre' => 'required|max:500',
         ]);
         if($validator->fails()){
             return $validator->errors();
@@ -54,7 +55,8 @@ class GameController extends Controller
         'classification' => $request->classification,
         'developer' => $request->developer,
         'releaseDay' => $request->releaseDay,
-        'sinopsis' => $request->sinopsis/*,
+        'sinopsis' => $request->sinopsis,
+        'genre' => $request->genre/*,
     'image' => $request->image*/]);
         
     }
@@ -91,30 +93,31 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:games,id',
             'title' => 'required|unique:games|max:255',
-            'plataform' => 'required|max:20',
+            'platform' => 'required|max:20',
             'classification' => 'required|max:5',
             'developer' => 'required|max:255',
             'releaseDay' => 'required|max:255',
             'sinopsis' => 'required|max:500',
+            'genre' => 'required|max:500',
         ]);
         if($validator->fails()){
             return $validator->errors();
         }
-
-
-        Game::where('id',$request->id)
-        ->update(['title'=> $request->title,
-                          'plataform'=> $request->plataform,
-                          'classification'=> $request->classification,
-                          'developer'=> $request->developer,
-                          'releaseDay'=> $request->releaseDay,
-                          'sinopsis'=> $request->sinopsis/*,
-                        'image'=> $request->image*/]);
+        $game = Game::where('id',$request->id);
+        $game -> title =$request ->title;
+        $game -> platform =$request ->platform;
+        $game -> classification =$request ->classification;
+        $game -> developer =$request ->developer;
+        $game -> releaseDay =$request ->releaseDay;
+        $game -> sinopsis =$request ->sinopsis;
+        $game -> genre =$request ->genre;
+        $game = Game::all();
+        return $game;
     }
 
     /**

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return $users;
+        $ticket = Ticket::all();
+        return $ticket;
     }
 
     /**
@@ -38,21 +37,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'lastName' => 'required|max:255',
-            'email' => 'required|unique:users|max:255',
-            'password' => 'required',
-           
+        $validator = Validator::make($request->all(),[
+            'game_id' => 'required|exists:games|id',
+            'date_purchase' => 'required|date',
+            'batch' => 'required|int|max:50'
         ]);
+
         if($validator->fails()){
             return $validator->errors();
         }
 
-        $user = User::create(['name' => $request->name,
-        'lastName' => $request->lastName,
-        'email' => $request->email,
-        'password' => $request->password]);
+        $ticket = Ticket::create([
+            'game_id' => $request->game_id,
+            'date_purchase' => $request->date_purchase,
+            'batch' => $request->batch
+        ]);
+
+        echo $ticket;
     }
 
     /**
@@ -61,10 +62,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $users = User::where('name',$request->name)->first();
-        return $users;
+        $ticket = Ticket::find($request->id);
+        return $ticket;
     }
 
     /**
@@ -85,21 +86,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'lastName' => 'required|max:255',
-            'email' => 'required|unique:users|max:255',
-            'password' => 'required',
-            
+        $validator = Validator::make($request->all(),[
+            'game_id' => 'required|exists:games|id',
+            'date_purchase' => 'required|date',
+            'batch' => 'required|int|max:50'
         ]);
+
         if($validator->fails()){
             return $validator->errors();
         }
-        User::where('id',$request->id)
-                ->update(['name' => $request->name,
-                        'email' => $request->email]);
+
+        $ticket = Ticket::find($request->id);
+        $ticket -> game_id = $request->game_id;
+        $ticket -> date_purchase = $request->date_purchase;
+        $ticket -> batch = $request->batch;
+        $ticket -> save();
+        $ticket = Ticket::all();
+        return $ticket;
     }
 
     /**
@@ -108,20 +113,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $user = User::where('name',$request->name)->first();
-        $user->delete();
-    }
-    public function userSales(Request $request)
-    {
-        Show::find(1)->user;
-        $user = User::find(1);
-        return $user->sale;
+        $ticket = Ticket::find($request->id);
+        $ticket -> delete();
+        $ticket = Ticket::all();
+        return $ticket;
     }
 
-
-    public function showToken(){
-        echo csrf_token();
+    public function create_token()
+    {
+        return csrf_token(); 
     }
 }

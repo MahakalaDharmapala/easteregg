@@ -33,3 +33,5 @@ Route::post('/student_update', [StudentController::class, 'update']);
 Route::post('register',[UserController::class,'store']);
 Route::get('registerr',[UserController::class,'showToken']);
 Route::post('registerGame',[GameController::class,'store']);
+Route::post('updateGame',[GameController::class,'update']);
+Route::post('showGame',[GameController::class,'index']);
