@@ -108,7 +108,7 @@ class GameController extends Controller
         if($validator->fails()){
             return $validator->errors();
         }
-        $game = Game::where('id',$request->id);
+        $game = Game::find($request->id);
         $game -> title =$request ->title;
         $game -> platform =$request ->platform;
         $game -> classification =$request ->classification;
@@ -116,6 +116,7 @@ class GameController extends Controller
         $game -> releaseDay =$request ->releaseDay;
         $game -> sinopsis =$request ->sinopsis;
         $game -> genre =$request ->genre;
+        $game-> save();
         $game = Game::all();
         return $game;
     }

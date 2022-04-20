@@ -85,7 +85,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
@@ -97,9 +97,14 @@ class UserController extends Controller
         if($validator->fails()){
             return $validator->errors();
         }
-        User::where('id',$request->id)
-                ->update(['name' => $request->name,
-                        'email' => $request->email]);
+        $user = User::find($request->id);
+        $user ->name = $request->name;
+        $user ->lastName = $request->lastName;
+        $user ->email = $request->email;
+        $user -> save();
+        $user = User::all();
+        return $user;
+
     }
 
     /**

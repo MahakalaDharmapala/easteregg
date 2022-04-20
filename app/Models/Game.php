@@ -10,11 +10,12 @@ class Game extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'plataform',
+        'platform',
         'classification',
         'developer',
         'releaseDay',
         'sinopsis',
+        'genre'
         //'image',
     ];
 

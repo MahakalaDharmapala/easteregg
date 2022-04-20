@@ -31,6 +31,7 @@ Route::get('/create_token', [StudentController::class, 'create_token']);
 Route::post('/student_delete', [StudentController::class, 'destroy']);
 Route::post('/student_update', [StudentController::class, 'update']);
 Route::post('register',[UserController::class,'store']);
+Route::post('actualizar',[UserController::class,'update']);
 Route::get('registerr',[UserController::class,'showToken']);
 Route::post('registerGame',[GameController::class,'store']);
 Route::post('updateGame',[GameController::class,'update']);
