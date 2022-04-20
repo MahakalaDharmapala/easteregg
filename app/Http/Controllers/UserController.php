@@ -101,6 +101,7 @@ class UserController extends Controller
         $user ->name = $request->name;
         $user ->lastName = $request->lastName;
         $user ->email = $request->email;
+        $user-> password=$request->password;
         $user -> save();
         $user = User::all();
         return $user;
