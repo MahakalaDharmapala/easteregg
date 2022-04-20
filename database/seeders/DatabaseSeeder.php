@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Ticket;
+use App\Models\Sale;
+use App\Models\Game;
+use App\Models\User;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
+
+        Game::factory(10)->create();
+
+        Ticket::factory(10)->create();
+
+        Sale::factory(10)->create();
     }
 }
