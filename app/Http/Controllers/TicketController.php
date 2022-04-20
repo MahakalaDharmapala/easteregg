@@ -38,7 +38,7 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'game_id' => 'required|exists:games|id',
+            'game_id' => 'required',
             'date_purchase' => 'required|date',
             'batch' => 'required|int|max:50'
         ]);

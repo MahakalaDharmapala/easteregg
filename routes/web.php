@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,4 @@ Route::get('registerr',[UserController::class,'showToken']);
 Route::post('registerGame',[GameController::class,'store']);
 Route::post('updateGame',[GameController::class,'update']);
 Route::post('showGame',[GameController::class,'index']);
+Route::post('insertar',[TicketController::class,'store']);
