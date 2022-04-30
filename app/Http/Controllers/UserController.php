@@ -52,7 +52,9 @@ class UserController extends Controller
         $user = User::create(['name' => $request->name,
         'lastName' => $request->lastName,
         'email' => $request->email,
-        'password' => $request->password]);
+        'password' => bcrypt($request->password)]);
+        $token = $user->createToken('LaravelAuthApp')->accessToken;
+        return response()->json(['token'=> $token], 200);
     }
 
     /**
@@ -130,4 +132,5 @@ class UserController extends Controller
     public function showToken(){
         echo csrf_token();
     }
+ 
 }

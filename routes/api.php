@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PassportAuthController;
-
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SaleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,10 +16,16 @@ use App\Http\Controllers\PassportAuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('register',[PassportAuthController::class,'register']);
-Route::post('login',[PassportAuthController::class,'login']);
+
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/create_student', [StudentController::class, 'store']);
+Route::post('/user/create_user', [UserController::class, 'store']);
+
+Route::post('/register', [PassportAuthController::class, 'register']);
+Route::post('login', [PassportAuthController::class, 'login']);
+Route::get('sales', [SaleController::class, 'index']);

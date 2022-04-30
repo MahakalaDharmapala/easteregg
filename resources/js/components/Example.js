@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Form,Button} from 'react-bootstrap';
+import {Form,Button,Container, Row, Alert} from 'react-bootstrap';
 import axios from 'axios';
+import { useHistory, useParams } from 'react-router';
 
 
 const Example=() => {
@@ -19,7 +20,7 @@ const handleSubmit = (e) =>{
   const formData = new FormData();
   formData.append("email", formValue.email)
   formData.append("password", formValue.password)
-  axios.post("https://localhost/topicos/public/api/login",
+  axios.post("https://localhost/easteregg-1/public/api/login",
   formData,
   {headers:{'Content-Type':'multipart/form-data',
 'Accept': 'application/jason'} }
@@ -34,7 +35,7 @@ const handleSubmit = (e) =>{
   return (
     <Form onSubmit={handleSubmit}>
     <Form.Group className="mb-3" controlId="formBasicEmail">
-      <Form.Label>Email address</Form.Label>
+      <Form.Label>Email addres</Form.Label>
       <Form.Control type="email" placeholder="Enter email" 
       name="email" value={formValue.email} onChange={onChange}/>
       <Form.Text className="text-muted">
@@ -58,8 +59,7 @@ const handleSubmit = (e) =>{
 }
 export default Example;
 
-if (document.getElementById('main')) {
-    ReactDOM.render(<Example />, document.getElementById('main'));
+if (document.getElementById('example')) {
+    ReactDOM.render(<Example />, document.getElementById('example'));
 }
-
 

@@ -10,13 +10,16 @@ class PassportAuthController extends Controller
     public function register(Request $request)
     {
         echo $request->name;
+        echo $request->password;
         $this->validate($request, [
             'name'=> 'required|min:4',
+            'lastName'=>'required|string',
             'email'=> 'required|email',
             'password'=> 'required|min:8',
         ]);
         $user = User:: create([
             'name'=> $request->name,
+            'lastName'=> $request->lastName,
             'email'=> $request->email,
             'password'=> bcrypt($request->password)
         ]);
@@ -26,6 +29,7 @@ class PassportAuthController extends Controller
     }
     public function login(Request $request)
     {
+
         $data =[
             'email'=> $request -> email,
             'password' =>$request-> password

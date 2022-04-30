@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sale;
-use App\Models\Ticket;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,12 +17,12 @@ class SaleController extends Controller
     public function index()
     {
         $sale = Sale::join('users','users.id', '=', 'sales.user_id')
-        ->join('shows','shows.id', '=', 'sales.show_id')
+        ->join('tickets','tickets.id', '=', 'sales.ticket_id')
         ->join('games','games.id', '=', 'tickets.game_id')
-        ->select('sales.id as id', 'tickets.id as ticket_id', 'tickets.day as Fecha',  'users.name as Usuario','sales.quantity as Cantidad','games.name as Juego', 'sales.mount as MontoTotal', 'sales.show_id', 'cinemas.name as Cine', 'theaters.name as Sala')
-        ->latest('id')
+        ->select('sales.id as id', 'tickets.id as ticket_id',  'tickets.date_purchase as Año de salida', 'users.name as Usuario','sales.quantity as copias','games.title as Juego', 'sales.mount as MontoTotal', 'sales.ticket_id', 'sales.created_at' )
         ->get();
         return $sale->toJson();
+
     }
 
     /**
@@ -44,7 +43,23 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+        'user_id'=>'required',
+        'ticket_id'=>'required',
+        'quantity'=>'required|int',
+        'mount'=>'required|int'
+    ]);
+
+    if($validator->fails()){
+        return $validator->errors();
+    }
+
+    $sale = Sale::create([
+        'user_id'=>$request->user_id,
+        'ticket_id'=>$request->ticket_id,
+        'quantity'=>$request->quantity,
+        'mount'=>$request->mount,
+    ]);
     }
 
     /**
@@ -53,9 +68,10 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $sale = Sale::where('id',$request->id)->first();
+        return $sale->toJson();
     }
 
     /**
@@ -76,9 +92,27 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'user_id'=>'required',
+            'ticket_id'=>'required',
+            'quantity'=>'required|int',
+            'mount'=>'required|int'
+        ]);
+    
+        if($validator->fails()){
+            return $validator->errors();
+        }
+    
+            $sale = Sale::find($request->id);
+            $sale->user_id=$request->user_id;
+            $sale->ticket_id=$request->ticket_id;
+            $sale->quantity=$request->quantity;
+            $sale->mount=$request->mount;
+            $sale -> save();
+            $sale = Sale::all();
+            return $sale;
     }
 
     /**
@@ -87,8 +121,13 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $sale = Sale::where('id',$request->id)->first();
+        $sale->delete();
+    }
+    
+    public function showToken(){
+        echo csrf_token();
     }
 }
