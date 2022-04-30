@@ -15,8 +15,12 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $ticket = Ticket::all();
+        $ticket = Ticket::join('games','games.id', '=', 'tickets.game_id')
+        ->select('tickets.id as id','games.title as Juego','games.sinopsis as Sinopsis','games.platform as plataforma','games.classification as clasificacion','games.developer as Desarrolladora','games.releaseDay as salida_de_juego',
+        'games.genre as genero','games.price as precio','games.image as portada','tickets.batch as existencia')
+        ->get();
         return $ticket;
+
     }
 
     /**

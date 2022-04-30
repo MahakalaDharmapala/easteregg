@@ -13,7 +13,7 @@ const Navigation = () => {
                 <Nav className="me-auto">
                 </Nav>
                 <Nav>
-                <Nav.Link as={Link} to="/easteregg-1/public/LoginForm">Iniciar sesión</Nav.Link>
+                <Nav.Link as={Link} to="/easteregg-1/public/Login">Iniciar sesión</Nav.Link>
                 <Nav.Link as={Link} to="/easteregg-1/public/RegisterForm">Registrarse</Nav.Link>
                 </Nav>
             </Navbar.Collapse>

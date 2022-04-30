@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { Link } from "react-router-dom"
 import ReactDOM from "react-dom";
 import {
     Container,
@@ -26,7 +27,7 @@ export default function NavigationBarAdmin() {
                         padding: 8,
                     }}
                 >
-                    <Navbar.Brand href="#Home">
+                    <Navbar.Brand as={Link} to="/easteregg-1/public/">
                         <img
                             alt="EasterEggLogo"
                             src={"./images/logoEaster.png"}
@@ -35,15 +36,38 @@ export default function NavigationBarAdmin() {
                         ></img>
                     </Navbar.Brand>
                     <Navbar.Brand
+                    as={Link} to="/easteregg-1/public/"
                         style={{ color: "black", fontSize: 40 }}
-                        href="#home"
+                        
                     >
                         EasterEgg
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
+                    <Nav.Link
+                            as={Link} to="/easteregg-1/public/RegisterForm"
+                            style={{
+                                fontSize: 30,
+                                paddingRight: 10,
+                                color: "black",
+                            }}
+                        >
+                            {" "}
+                            Registrarse
+                        </Nav.Link>
                         <Nav.Link
-                            href="#Games"
+                            as={Link} to="/easteregg-1/public/LogInScreen"
+                            style={{
+                                fontSize: 30,
+                                paddingRight: 10,
+                                color: "black",
+                            }}
+                        >
+                            {" "}
+                            Iniciar sesión
+                        </Nav.Link>
+                        <Nav.Link
+                            as={Link} to="/easteregg-1/public/EditGame"
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,
@@ -54,7 +78,7 @@ export default function NavigationBarAdmin() {
                             Games
                         </Nav.Link>
                         <Nav.Link
-                            href="#Sales"
+                           as={Link} to="/easteregg-1/public/SalesTable"
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,

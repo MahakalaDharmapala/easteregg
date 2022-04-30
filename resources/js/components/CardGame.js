@@ -12,7 +12,7 @@ export default function CardGame(props) {
 
     const getGames = () => {
         axios
-            .get("http://localhost/easteregg-1/public/game")
+            .get("https://localhost/easteregg-1/public/game")
             .then((res) => {
                 console.log(res.data);
                 setGames(res.data);
@@ -62,6 +62,6 @@ export default function CardGame(props) {
     );
 }
 
-if (document.getElementById('main')) {
-    ReactDOM.render(<CardGame />, document.getElementById('main'));
+if (document.getElementById('')) {
+    ReactDOM.render(<RegisterForm />, document.getElementById(''));
 }

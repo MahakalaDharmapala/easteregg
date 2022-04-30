@@ -6,6 +6,7 @@ use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\TicketController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +30,4 @@ Route::post('/user/create_user', [UserController::class, 'store']);
 Route::post('/register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 Route::get('sales', [SaleController::class, 'index']);
+Route::get('ticket', [TicketController::class, 'index']);
