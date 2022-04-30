@@ -15,7 +15,8 @@ class Game extends Model
         'developer',
         'releaseDay',
         'sinopsis',
-        'genre'
+        'genre',
+        'price'
         //'image',
     ];
 

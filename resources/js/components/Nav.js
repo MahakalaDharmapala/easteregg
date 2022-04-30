@@ -7,7 +7,7 @@ const Navigation = () => {
     return(
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
             <Container>
-            <Navbar.Brand as={Link} to="/cinestres/public/">Esteregg</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/easteregg-1/public/">Esteregg</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">

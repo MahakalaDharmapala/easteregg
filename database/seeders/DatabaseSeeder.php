@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        Game::factory(10)->create();
+        $this->call(GameSeeder::class);
 
         Ticket::factory(10)->create();
 

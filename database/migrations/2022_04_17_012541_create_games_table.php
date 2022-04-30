@@ -22,6 +22,7 @@ class CreateGamesTable extends Migration
 	        $table->date('releaseDay');
 	        $table->string('sinopsis');
 	        $table->string('genre');
+            $table->float('price');
 	        $table->string('image')->nullable();
 
             $table->timestamps();

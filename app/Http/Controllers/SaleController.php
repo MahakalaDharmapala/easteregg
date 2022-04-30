@@ -19,7 +19,7 @@ class SaleController extends Controller
         $sale = Sale::join('users','users.id', '=', 'sales.user_id')
         ->join('tickets','tickets.id', '=', 'sales.ticket_id')
         ->join('games','games.id', '=', 'tickets.game_id')
-        ->select('sales.id as id', 'tickets.id as ticket_id',  'tickets.date_purchase as Año de salida', 'users.name as Usuario','sales.quantity as copias','games.title as Juego', 'sales.mount as MontoTotal', 'sales.ticket_id', 'sales.created_at' )
+        ->select('sales.id as id', 'tickets.id as ticket_id',  'tickets.date_purchase as Fecha_de_compra', 'users.name as Usuario','sales.quantity as copias','games.title as Juego', 'sales.mount as MontoTotal', 'sales.ticket_id' )
         ->get();
         return $sale->toJson();
 

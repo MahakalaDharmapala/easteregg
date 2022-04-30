@@ -16,7 +16,7 @@ class GameController extends Controller
     public function index()
     {
         $games = Game::all();
-        return $games->toJson();
+        return $games;
     }
 
     /**

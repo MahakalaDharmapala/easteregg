@@ -66,7 +66,7 @@ const SalesTable = props => {
                         <th>Usuario</th>
                         <th>Juego</th>
                         <th>copias</th>
-                        <th>Precio del Juego</th>
+                        <th>MontoTotal</th>
                         <th>Fecha</th>
                         <th></th>
                         
@@ -80,7 +80,7 @@ const SalesTable = props => {
                             <td>{dataItem.Juego}</td>
                             <td>{dataItem.copias}</td>
                             <td>{dataItem.MontoTotal}</td>
-                            <td>{dataItem.created_at}</td>
+                            <td>{dataItem.Fecha_de_compra}</td>
                             <td><Button variant="danger" onClick={handleDelete(dataItem.id, dataItem.show_id, dataItem.NoBoletos)}>Borrar</Button></td>
                         </tr>
                     ))}
