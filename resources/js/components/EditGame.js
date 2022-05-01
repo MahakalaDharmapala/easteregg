@@ -41,7 +41,7 @@ const EditGame = props => {
         return (
             <Container >
                 <h1 className="mt-5">Juegos</h1>
-               <Button className="mt-3" variant="warning">Agregar nuevo juego</Button>
+                <Link as ={Link} to='/easteregg-1/public/AddGame'><Button className="mt-3" variant="warning">Agregar nuevo juego</Button></Link>
                 <Table striped bordered hover variant="dark" className=" mr-5 my-3">
                     <thead>
                     <tr>

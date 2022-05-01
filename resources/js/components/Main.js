@@ -15,6 +15,7 @@ import {
     Route
   } from "react-router-dom";
 import EditGame from './EditGame';
+import AddGame from './AddGame';
 
 
 function Main(){
@@ -29,6 +30,7 @@ function Main(){
                         <Route exact path="/easteregg-1/public/LogInScreen" element={<LogInScreen/>} />
                         <Route exact path="/easteregg-1/public/SalesTable" element={<SalesTable/>} />
                         <Route exact path="/easteregg-1/public/EditGame" element={<EditGame/>} />
+                        <Route exact path="/easteregg-1/public/AddGame" element={<AddGame/>} />
                     </Routes>
             </main>
         </Router>

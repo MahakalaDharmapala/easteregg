@@ -30,4 +30,5 @@ Route::post('/user/create_user', [UserController::class, 'store']);
 Route::post('/register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 Route::get('sales', [SaleController::class, 'index']);
+Route::get('/saleDestroy', [SaleController::class, 'destroy']);
 Route::get('ticket', [TicketController::class, 'index']);

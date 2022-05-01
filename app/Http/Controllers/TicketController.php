@@ -125,8 +125,7 @@ class TicketController extends Controller
         return $ticket;
     }
 
-    public function create_token()
-    {
-        return csrf_token(); 
+    public function showToken(){
+        echo csrf_token();
     }
 }

@@ -35,7 +35,7 @@ const SalesTable = props => {
 
     //BORRAR POST        
     const handleDelete = ( ticket_id) => async (e) =>{
-        console.log(show_id);
+        console.log(ticket_id);
         e.preventDefault();
           await Axios.get('../public/api/saleDestroy', {
             params: {
@@ -81,7 +81,7 @@ const SalesTable = props => {
                             <td>{dataItem.copias}</td>
                             <td>{dataItem.MontoTotal}</td>
                             <td>{dataItem.Fecha_de_compra}</td>
-                            <td><Button variant="danger" onClick={handleDelete(dataItem.id, dataItem.show_id, dataItem.NoBoletos)}>Borrar</Button></td>
+                            <td><Button variant="danger" onClick={handleDelete(dataItem.id, dataItem.ticket_id, dataItem.copias)}>Borrar</Button></td>
                         </tr>
                     ))}
                     </tbody>

@@ -22,10 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', function () {
-    return ('welcome');
 
-});
 
 
 Route::post('/create_student', [StudentController::class, 'store']);
@@ -69,7 +66,31 @@ Route::post('/ticket/update', [TicketController::class, 'update']);
 
 
 
-//RUTAS DE LOS TOKEN
+//RUTAS DE LOS TOKEN Postman
 Route::get('/user/create_token', [UserController::class, 'showToken']); //Crea un token
-Route::get('/ticket/create_token', [TicketController::class, 'create_token']); //Crea un token
+Route::get('/ticket/create_token', [TicketController::class, 'showToken']); //Crea un token
+Route::get('/game/create_token', [GameController::class, 'showToken']); //Crea un token
+Route::get('/sale/create_token', [SaleController::class, 'showToken']); //Crea un token
 
+
+//Rotas para mostrarRoute::get('/RegisterForm', function () {
+    Route::get('/RegisterForm', function () {
+        return view('welcome');
+    });
+    Route::get('/SalesTable', function () {
+        return view('welcome');
+    });
+    Route::get('/LogInScreen', function () {
+        return view('welcome');
+    });
+    Route::get('/EditGame', function () {
+        return view('welcome');
+    });
+
+    Route::get('/CatalogScreen', function () {
+        return view('welcome');
+    });
+
+    Route::get('/AddGame', function () {
+        return view('welcome');
+    });
