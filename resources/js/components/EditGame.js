@@ -71,7 +71,7 @@ const EditGame = props => {
                             <td>{dataItem.genero}</td>
                             <td>{dataItem.precio}</td>
                             <td>{dataItem.existencia}</td>
-                            <td><Button variant="light"  value={dataItem.id}>Editar</Button></td>
+                            <td><Link as ={Link} to={`/easteregg-1/public/UpdateGame/${dataItem.id}`}><Button variant="light"  value={dataItem.id}>Editar</Button></Link></td>
                         </tr>
                     ))}
                     </tbody>

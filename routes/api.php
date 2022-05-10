@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\GameController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,3 +33,4 @@ Route::post('login', [PassportAuthController::class, 'login']);
 Route::get('sales', [SaleController::class, 'index']);
 Route::get('/saleDestroy', [SaleController::class, 'destroy']);
 Route::get('ticket', [TicketController::class, 'index']);
+Route::post('game',[GameController::class,'store']);

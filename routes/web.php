@@ -62,6 +62,7 @@ Route::post('/ticket/create_ticket', [TicketController::class, 'store']);
 Route::post('/ticket/show', [TicketController::class, 'show']);
 Route::post('/ticket/delete', [TicketController::class, 'destroy']);
 Route::post('/ticket/update', [TicketController::class, 'update']);
+Route::get('/ticket/getBatch/{id}', [TicketController::class, 'getBatch']);
 
 
 
@@ -73,7 +74,7 @@ Route::get('/game/create_token', [GameController::class, 'showToken']); //Crea u
 Route::get('/sale/create_token', [SaleController::class, 'showToken']); //Crea un token
 
 
-//Rotas para mostrarRoute::get('/RegisterForm', function () {
+//Rutas para mostrarRoute::get('/RegisterForm', function () {
     Route::get('/RegisterForm', function () {
         return view('welcome');
     });
@@ -92,5 +93,13 @@ Route::get('/sale/create_token', [SaleController::class, 'showToken']); //Crea u
     });
 
     Route::get('/AddGame', function () {
+        return view('welcome');
+    });
+
+    Route::get('/UpdateGame/{id}', function () {
+        return view('welcome');
+    });
+
+    Route::get('/gameSpecific', function () {
         return view('welcome');
     });

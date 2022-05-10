@@ -45,6 +45,7 @@ class GameController extends Controller
             'releaseDay' => 'required|max:255',
             'sinopsis' => 'required|max:500',
             'genre' => 'required|max:500',
+            'price' => 'required',
         ]);
         if($validator->fails()){
             return $validator->errors();
@@ -56,7 +57,8 @@ class GameController extends Controller
         'developer' => $request->developer,
         'releaseDay' => $request->releaseDay,
         'sinopsis' => $request->sinopsis,
-        'genre' => $request->genre/*,
+        'genre' => $request->genre,
+        'price' => $request->price,/*,
     'image' => $request->image*/]);
         
     }

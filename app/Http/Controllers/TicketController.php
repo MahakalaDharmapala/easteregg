@@ -124,6 +124,22 @@ class TicketController extends Controller
         $ticket = Ticket::all();
         return $ticket;
     }
+    public function getBatch(Request $request)
+    {
+
+        //$gameId = $request->id;
+        $ticket = Ticket::join('games', 'games.id', '=', 'tickets.game_id')
+            ->select(
+                'tickets.id as ticket_id',
+                'games.title as game_title',
+                'tickets.batch as ticket_batch'
+            )
+            ->where('games.id', $request->id)
+            ->orderBy('batch', 'asc')->first();
+
+        return $ticket;
+    }
+
 
     public function showToken(){
         echo csrf_token();

@@ -8441,22 +8441,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/esm/Form.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Container */ "./node_modules/react-bootstrap/esm/Container.js");
 /* harmony import */ var react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Row */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Alert */ "./node_modules/react-bootstrap/esm/Alert.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -8484,142 +8477,188 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function AddGame() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+
+var AddGame = function AddGame() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1];
+      showErr = _useState2[0],
+      setShowErr = _useState2[1];
 
-  var handleInputChange = function handleInputChange(event) {
-    setData(_objectSpread(_objectSpread({}, data), {}, _defineProperty({}, event.target.name, event.target.value)));
-  }; //POST
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState({
+    title: '',
+    platform: '',
+    classification: '',
+    developer: '',
+    releaseDay: '',
+    sinopsis: '',
+    genre: '',
+    price: ''
+  }),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      formValue = _React$useState2[0],
+      setformValue = _React$useState2[1];
 
+  var onChange = function onChange(e) {
+    e.persist();
+    setformValue(_objectSpread(_objectSpread({}, formValue), {}, _defineProperty({}, e.target.name, e.target.value)));
+  };
 
-  var handleSubmit = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
+  var handleSubmit = function handleSubmit(e) {
+    if (e && e.preventDefault()) e.preventDefault();
+    var formData = new FormData();
+    formData.append("title", formValue.title);
+    formData.append("platform", formValue.platform);
+    formData.append("classification", formValue.classification);
+    formData.append("developer", formValue.developer);
+    formData.append("releaseDay", formValue.releaseDay);
+    formData.append("sinopsis", formValue.sinopsis);
+    formData.append("genre", formValue.genre);
+    formData.append("price", formValue.price);
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("https://localhost/easteregg-1/public/api/game", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      }
+    }).then(function (response) {
+      console.log('response: ');
+      console.log(response);
+    })["catch"](function (error) {
+      console.log(error);
+      setShowErr(true);
+    });
+  };
 
-    return function handleSubmit(_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    fluid: true,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-      className: "mt-5",
-      children: "Agregar nuevo Juego"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      xl: 1,
-      className: " m-5 ",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        onSubmit: handleSubmit,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "Juego:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "text",
-            placeholder: "Nombre del juego",
-            name: "game",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "Sinposis:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "text",
-            placeholder: "Escriba la sinopsis del juego",
-            name: "sinopsis",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "Plataforma:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "text",
-            placeholder: "Ingresa las plataformas",
-            name: "plataforma",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "Clasificacion:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "text",
-            placeholder: "Escriba la clasificacion del juego",
-            name: "clasificacion",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "Desarrolladora:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "text",
-            placeholder: "Nombre del la desarrolladora",
-            name: "desarrolladora",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "A\xF1o de salida:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "text",
-            placeholder: "Ingrese el a\xF1o de salida del juego ",
-            name: "a\xF1o",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "Genero:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "text",
-            placeholder: "Ingrese el genero del juego",
-            name: "genero",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
-          className: " mr-5",
-          controlId: "",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
-            children: "Precio:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
-            type: "number",
-            placeholder: "Precio del juego",
-            name: "precio",
-            onChange: handleInputChange
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          variant: "primary",
-          type: "submit",
-          children: "Agregar Juego"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      show: showErr,
+      variant: "danger",
+      onClose: function onClose() {
+        return setShowErr(false);
+      },
+      dismissible: true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("center", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Alert__WEBPACK_IMPORTED_MODULE_3__["default"].Heading, {
+          children: "Datos incorrectos."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Vuelva a intentarlo."
         })]
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      fluid: true,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+        className: "mt-5",
+        children: "Agregar nuevo Juego"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        xl: 1,
+        className: " m-5 ",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          onSubmit: handleSubmit,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "Juego:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Nombre del juego",
+              name: "title",
+              value: formValue.title,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "Plataforma:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Ingresa las plataformas",
+              name: "platform",
+              value: formValue.platform,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "Clasificacion:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Escriba la clasificacion del juego",
+              name: "classification",
+              value: formValue.classification,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "Desarrolladora:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Ingrese la desarrolladora",
+              name: "developer",
+              value: formValue.developer,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "A\xF1o de salida:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Ingrese el a\xF1o de salida del juego ",
+              name: "releaseDay",
+              value: formValue.releaseDay,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "Sinopsis"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Ingrese la sinopsis del juego  ",
+              name: "sinopsis",
+              value: formValue.sinopsis,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "Genero:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Ingrese el genero del juego",
+              name: "genre",
+              value: formValue.genre,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Group, {
+            className: " mr-5",
+            controlId: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Label, {
+              children: "Precio:"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_6__["default"].Control, {
+              type: "text",
+              placeholder: "Ingrese el precio del juego",
+              name: "price",
+              value: formValue.price,
+              onChange: onChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            variant: "primary",
+            type: "submit",
+            children: "Agregar Juego"
+          })]
+        })
+      })]
     })]
   });
-}
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddGame);
 
@@ -8638,13 +8677,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -8665,12 +8705,36 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function CardGame(props) {
-  //OBTENIENDO DATOS CON AXIOS
+  //PARA QUE CARGUE LA FUNCION APENAS CARGUE LA PÁGINA
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getGames();
+  }, []); //ENVIAR DATOS A LA CARD PROPIA DEL JUEGO.
+
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)(); //OBTENIENDO DATOS CON AXIOS
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       game = _useState2[0],
       setGames = _useState2[1];
+
+  var toComponentB = function toComponentB(dataGame) {
+    navigate("/easteregg-1/public/gameSpecific", {
+      state: {
+        id: dataGame.id,
+        title: dataGame.title,
+        image: dataGame.image,
+        platform: dataGame.platform,
+        classification: dataGame.classification,
+        developer: dataGame.developer,
+        releaseDay: dataGame.releaseDay,
+        sinopsis: dataGame.sinopsis,
+        genre: dataGame.genre,
+        price: dataGame.price
+      }
+    });
+  };
 
   var getGames = function getGames() {
     axios__WEBPACK_IMPORTED_MODULE_2___default().get("https://localhost/easteregg-1/public/game").then(function (res) {
@@ -8679,18 +8743,14 @@ function CardGame(props) {
     })["catch"](function (err) {
       console.log(err);
     });
-  }; //PARA QUE CARGUE LA FUNCION APENAS CARGUE LA PÁGINA
+  };
 
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    getGames();
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     fluid: "md",
     style: {
       paddingTop: "2rem"
     },
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       xs: 1,
       sm: 2,
       md: 3,
@@ -8700,7 +8760,7 @@ function CardGame(props) {
         justifyContent: "center"
       },
       children: game.map(function (dataGame) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
           border: "light",
           style: {
             marginRight: "1rem",
@@ -8708,18 +8768,23 @@ function CardGame(props) {
             marginBottom: "1rem",
             width: "16rem"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Img, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Img, {
             src: dataGame.image
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Body, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Title, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Title, {
               children: dataGame.title
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Text, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Text, {
               children: dataGame.platform
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Footer, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Footer, {
             children: ["$", dataGame.price, " MXN "]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
             variant: "outline-success",
+            onClick: function onClick() {
+              // sendingParameters(dataGame);
+              // handleOnClick;
+              toComponentB(dataGame);
+            },
             children: "SEE MORE"
           })]
         });
@@ -8728,8 +8793,218 @@ function CardGame(props) {
   });
 }
 
-if (document.getElementById('')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(RegisterForm, {}), document.getElementById(''));
+if (document.getElementById("")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(RegisterForm, {}), document.getElementById(""));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/CardGameSpecific.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/CardGameSpecific.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CardGameSpecific)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+function CardGameSpecific(props) {
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLocation)(); // useEffect(() => {
+  //     findingBatch();
+  // }, []);
+  //CURRENT DATE
+
+  var current = new Date();
+  var year = current.getFullYear();
+  var month = addZero(current.getMonth() + 1);
+  var day = addZero(current.getDate());
+  var hours = addZero(current.getHours());
+  var minutes = addZero(current.getMinutes());
+  var seconds = addZero(current.getSeconds());
+  var currentDate = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds; //RETORNAR EL BATCH DEL ULTIMO TICKET
+
+  function findingBatch() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("https://localhost/easteregg-1/public/ticket/getBatch/'.$id.'", {
+      params: {
+        id: location.state.id
+      }
+    }).then(function (response) {
+      console.log(response.data.ticket_batch);
+      creatingTicket(response.data.ticket_batch);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  } //HACER EL TICKET CON GAME_ID, DATE_PURCHASE, BATCH, CREATED_AT (POST)
+  //2022-05-07 00:02:28
+
+
+  function creatingTicket(batch) {
+    //CURRENT QUANTITY
+    var inputValue = document.getElementById("quantityToBuy").value;
+
+    if (batch - inputValue < 0) {
+      alert("IMPOSIBLE CREAR UN TICKET CON EXISTENCIAS NEGATIVAS.... \nEXISTENCIAS: " + batch + "\nSOLICITADAS: " + inputValue);
+      console.log("IMPOSIBLE CREAR UN TICKET CON EXISTENCIAS NEGATIVAS");
+      return 0;
+    } else {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("https://localhost/easteregg-1/public/ticket/create_ticket", {
+        game_id: location.state.id,
+        date_purchase: currentDate,
+        batch: batch - inputValue
+      }).then(function (response) {
+        console.log(response);
+        findingTicketID();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+
+  function findingTicketID() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("https://localhost/easteregg-1/public/ticket/getBatch/'.$id.'", {
+      params: {
+        id: location.state.id
+      }
+    }).then(function (response) {
+      console.log(response.data);
+      creatingSale(response.data.ticket_id);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }
+
+  function creatingSale(id) {
+    //CURRENT QUANTITY
+    var inputValue = document.getElementById("quantityToBuy").value;
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("https://localhost/easteregg-1/public/sale/create_sale", {
+      user_id: 1,
+      ticket_id: id,
+      quantity: inputValue,
+      mount: parseInt(location.state.price) * inputValue,
+      created_at: currentDate
+    }).then(function (response) {
+      console.log(response.data);
+      alert("SU COMPRA HA SIDO REALIZADA, GRACIAS POR COMPRAR EN EasterEgg!: \n\nJUEGO: " + location.state.title + "\nCOPIAS: " + inputValue + "\nPAGO: " + parseInt(location.state.price) * inputValue + " MXN");
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }
+
+  function addZero(num) {
+    return num < 10 ? "0".concat(num) : num;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        marginTop: "3rem" // marginTop: "6rem",
+
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        style: {
+          alignItems: "center",
+          justifyContent: "center",
+          border: 3,
+          borderColor: "black"
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          xs: 6,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            className: "bg-light text-black",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Img, {
+              src: location.state.image,
+              alt: "Card image"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].ImgOverlay, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+                onClick: function onClick() {
+                  findingBatch();
+                },
+                variant: "success",
+                style: {
+                  fontFamily: ["Poppins", "sans-serif"]
+                },
+                children: ["COMPRAR (", location.state.price, " MXN)"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                type: "number",
+                id: "quantityToBuy",
+                name: "quantity",
+                min: "1",
+                max: "50",
+                placeholder: "Quantity",
+                style: {
+                  marginLeft: ".5rem",
+                  borderRadius: 5,
+                  width: "5rem",
+                  height: "2.2rem"
+                }
+              })]
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          xs: 4,
+          style: {
+            fontFamily: ["Poppins", "sans-serif"]
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+            children: location.state.title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+            style: {
+              textAlign: "justify"
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+              children: "Sinopsis: "
+            }), " ", location.state.sinopsis]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+              children: "Developer:"
+            }), " ", location.state.developer]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+              children: "Release date:"
+            }), " ", location.state.releaseDay]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+              children: "Genre:"
+            }), " ", location.state.genre]
+          })]
+        })]
+      })
+    })
+  });
+}
+
+if (document.getElementById("cardGameSpecific")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CardGameSpecific, {}), document.getElementById("cardGameSpecific"));
 }
 
 /***/ }),
@@ -8946,10 +9221,14 @@ var EditGame = function EditGame(props) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
               children: dataItem.existencia
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                variant: "light",
-                value: dataItem.id,
-                children: "Editar"
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                as: react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link,
+                to: "/easteregg-1/public/UpdateGame/".concat(dataItem.id),
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                  variant: "light",
+                  value: dataItem.id,
+                  children: "Editar"
+                })
               })
             })]
           });
@@ -9362,11 +9641,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LogInScreen__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LogInScreen */ "./resources/js/components/LogInScreen.js");
 /* harmony import */ var _SalesTable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SalesTable */ "./resources/js/components/SalesTable.js");
 /* harmony import */ var _NavigationBarAdmin__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./NavigationBarAdmin */ "./resources/js/components/NavigationBarAdmin.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _EditGame__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./EditGame */ "./resources/js/components/EditGame.js");
 /* harmony import */ var _AddGame__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./AddGame */ "./resources/js/components/AddGame.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _UpdateGame__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./UpdateGame */ "./resources/js/components/UpdateGame.js");
+/* harmony import */ var _CardGameSpecific__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CardGameSpecific */ "./resources/js/components/CardGameSpecific.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -9383,33 +9666,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Main() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("main", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_NavigationBarAdmin__WEBPACK_IMPORTED_MODULE_8__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Routes, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("main", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_NavigationBarAdmin__WEBPACK_IMPORTED_MODULE_8__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Routes, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
           exact: true,
           path: "/easteregg-1/public/",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_CatalogScreen__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_CatalogScreen__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
           exact: true,
           path: "/easteregg-1/public/RegisterForm",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_RegisterForm__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_RegisterForm__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
           exact: true,
           path: "/easteregg-1/public/LogInScreen",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_LogInScreen__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_LogInScreen__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
           exact: true,
           path: "/easteregg-1/public/SalesTable",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_SalesTable__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_SalesTable__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
           exact: true,
           path: "/easteregg-1/public/EditGame",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_EditGame__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_EditGame__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
           exact: true,
           path: "/easteregg-1/public/AddGame",
-          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_AddGame__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_AddGame__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+          exact: true,
+          path: "/easteregg-1/public/UpdateGame/:id",
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_UpdateGame__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+          exact: true,
+          path: "/easteregg-1/public/gameSpecific",
+          element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_CardGameSpecific__WEBPACK_IMPORTED_MODULE_12__["default"], {})
         })]
       })]
     })
@@ -9419,7 +9710,7 @@ function Main() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Main);
 
 if (document.getElementById('main')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Main, {}), document.getElementById('main'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(Main, {}), document.getElementById('main'));
 }
 
 /***/ }),
@@ -10010,19 +10301,19 @@ var SalesTable = function SalesTable(props) {
     }))();
   }, []); //BORRAR POST        
 
-  var handleDelete = function handleDelete(ticket_id) {
+  var handleDelete = function handleDelete(id) {
     return /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log(ticket_id);
+                console.log(id);
                 e.preventDefault();
                 _context2.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().get('../public/api/saleDestroy', {
                   params: {
-                    ticket_id: ticket_id
+                    id: id
                   }
                 }).then(function (response) {
                   window.location = 'SalesTable';
@@ -10088,7 +10379,7 @@ var SalesTable = function SalesTable(props) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
                 variant: "danger",
-                onClick: handleDelete(dataItem.id, dataItem.ticket_id, dataItem.copias),
+                onClick: handleDelete(dataItem.id, dataItem.id, dataItem.copias),
                 children: "Borrar"
               })
             })]
@@ -10104,6 +10395,138 @@ var SalesTable = function SalesTable(props) {
 if (document.getElementById('')) {
   react_dom__WEBPACK_IMPORTED_MODULE_3__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(SalesTable, {}), document.getElementById(''));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/UpdateGame.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/UpdateGame.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Container */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Row */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+var UpdateGame = function UpdateGame() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    fluid: true,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      className: "mt-5",
+      children: "Agregar nuevo Juego"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      xl: 1,
+      className: " m-5 ",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "Juego:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Nombre del juego",
+            name: "title"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "Plataforma:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Ingresa las plataformas",
+            name: "platform"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "Clasificacion:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Escriba la clasificacion del juego",
+            name: "classification"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "Desarrolladora:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Ingrese la desarrolladora",
+            name: "developer"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "A\xF1o de salida:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Ingrese el a\xF1o de salida del juego ",
+            name: "releaseDay"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "Sinopsis"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Ingrese la sinopsis del juego  ",
+            name: "sinopsis"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "Genero:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Ingrese el genero del juego",
+            name: "genre"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Group, {
+          className: " mr-5",
+          controlId: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Label, {
+            children: "Precio:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__["default"].Control, {
+            type: "text",
+            placeholder: "Ingrese el precio del juego",
+            name: "price"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          variant: "primary",
+          type: "submit",
+          children: "Agregar Juego"
+        })]
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UpdateGame);
 
 /***/ }),
 

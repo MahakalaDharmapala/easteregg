@@ -16,6 +16,8 @@ import {
   } from "react-router-dom";
 import EditGame from './EditGame';
 import AddGame from './AddGame';
+import UpdateGame from './UpdateGame';
+import CardGameSpecific from './CardGameSpecific';
 
 
 function Main(){
@@ -31,6 +33,10 @@ function Main(){
                         <Route exact path="/easteregg-1/public/SalesTable" element={<SalesTable/>} />
                         <Route exact path="/easteregg-1/public/EditGame" element={<EditGame/>} />
                         <Route exact path="/easteregg-1/public/AddGame" element={<AddGame/>} />
+                        <Route exact path="/easteregg-1/public/UpdateGame/:id" element={<UpdateGame/>} />
+                        <Route exact path="/easteregg-1/public/gameSpecific" element={<CardGameSpecific />}
+
+                    />
                     </Routes>
             </main>
         </Router>

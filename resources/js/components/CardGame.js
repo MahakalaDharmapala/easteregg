@@ -1,14 +1,38 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useCallback } from "react";
 import ReactDOM from "react-dom";
 import { Container, CardGroup, Card, Button, Row } from "react-bootstrap";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { useNavigate } from "react-router-dom";
 
 export default function CardGame(props) {
+    //PARA QUE CARGUE LA FUNCION APENAS CARGUE LA PÁGINA
+    useEffect(() => {
+        getGames();
+    }, []);
+
+    //ENVIAR DATOS A LA CARD PROPIA DEL JUEGO.
+    const navigate = useNavigate();
+
     //OBTENIENDO DATOS CON AXIOS
     const [game, setGames] = useState([]);
 
+    const toComponentB = (dataGame) => {
+        navigate("/easteregg-1/public/gameSpecific", {
+            state: {
+                id: dataGame.id,
+                title: dataGame.title,
+                image: dataGame.image,
+                platform: dataGame.platform,
+                classification: dataGame.classification,
+                developer: dataGame.developer,
+                releaseDay: dataGame.releaseDay,
+                sinopsis: dataGame.sinopsis,
+                genre: dataGame.genre,
+                price: dataGame.price,
+            },
+        });
+    };
 
     const getGames = () => {
         axios
@@ -21,13 +45,6 @@ export default function CardGame(props) {
                 console.log(err);
             });
     };
-
-    //PARA QUE CARGUE LA FUNCION APENAS CARGUE LA PÁGINA
-    useEffect(() => {
-        getGames();
-    }, []);
-
-
 
     return (
         <Container fluid="md" style={{ paddingTop: "2rem" }}>
@@ -54,7 +71,16 @@ export default function CardGame(props) {
                             <Card.Text>{dataGame.platform}</Card.Text>
                         </Card.Body>
                         <Card.Footer>${dataGame.price} MXN </Card.Footer>
-                        <Button variant="outline-success">SEE MORE</Button>
+                        <Button
+                            variant="outline-success"
+                            onClick={() => {
+                                // sendingParameters(dataGame);
+                                // handleOnClick;
+                                toComponentB(dataGame);
+                            }}
+                        >
+                            SEE MORE
+                        </Button>
                     </Card>
                 ))}
             </Row>
@@ -62,6 +88,6 @@ export default function CardGame(props) {
     );
 }
 
-if (document.getElementById('')) {
-    ReactDOM.render(<RegisterForm />, document.getElementById(''));
+if (document.getElementById("")) {
+    ReactDOM.render(<RegisterForm />, document.getElementById(""));
 }
