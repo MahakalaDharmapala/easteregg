@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\GameController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,3 +35,6 @@ Route::get('sales', [SaleController::class, 'index']);
 Route::get('/saleDestroy', [SaleController::class, 'destroy']);
 Route::get('ticket', [TicketController::class, 'index']);
 Route::post('game',[GameController::class,'store']);
+Route::post('/game/update',[GameController::class,'update']);
+Route::get('user', [UserController::class, 'index']);
+Route::post('user/update', [UserController::class, 'update']); //Actualiza a un cliente

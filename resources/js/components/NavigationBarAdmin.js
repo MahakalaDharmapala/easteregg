@@ -89,6 +89,7 @@ export default function NavigationBarAdmin() {
                             Sales
                         </Nav.Link>
                         <Nav.Link
+                        as={Link} to="/easteregg-1/public/Users"
                             href="#Users"
                             style={{
                                 fontSize: 30,

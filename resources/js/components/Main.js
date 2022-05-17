@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Navigation from "./Nav"
+
 import Home from "./Home"
 import CatalogScreen from "./CatalogScreen"
 import RegisterForm from "./RegisterForm"
@@ -18,6 +18,8 @@ import EditGame from './EditGame';
 import AddGame from './AddGame';
 import UpdateGame from './UpdateGame';
 import CardGameSpecific from './CardGameSpecific';
+import Users from './Users';
+import UpdateUsers from './UpdateUsers';
 
 
 function Main(){
@@ -34,9 +36,11 @@ function Main(){
                         <Route exact path="/easteregg-1/public/EditGame" element={<EditGame/>} />
                         <Route exact path="/easteregg-1/public/AddGame" element={<AddGame/>} />
                         <Route exact path="/easteregg-1/public/UpdateGame/:id" element={<UpdateGame/>} />
-                        <Route exact path="/easteregg-1/public/gameSpecific" element={<CardGameSpecific />}
+                        <Route exact path="/easteregg-1/public/gameSpecific" element={<CardGameSpecific />}/>
+                        <Route exact path="/easteregg-1/public/Users" element={<Users />} />
+                        <Route exact path="/easteregg-1/public/UpdateUsers/:id" element={<UpdateUsers/>} />
 
-                    />
+                   
                     </Routes>
             </main>
         </Router>

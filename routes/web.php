@@ -103,3 +103,11 @@ Route::get('/sale/create_token', [SaleController::class, 'showToken']); //Crea u
     Route::get('/gameSpecific', function () {
         return view('welcome');
     });
+
+    Route::get('/Users', function () {
+        return view('welcome');
+    });
+
+    Route::get('/UpdateUsers/{id}', function () {
+        return view('welcome');
+    });

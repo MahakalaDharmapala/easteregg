@@ -37,6 +37,7 @@
         </style>
     </head>
     <body class="antialiased">
+  
 
         <div id="main"></div>
         <script src="{{ asset('js/app.js')}}" defer></script>
