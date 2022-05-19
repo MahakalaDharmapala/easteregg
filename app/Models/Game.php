@@ -16,8 +16,8 @@ class Game extends Model
         'releaseDay',
         'sinopsis',
         'genre',
-        'price'
-        //'image',
+        'price',
+        'image'
     ];
 
     //Relación uno a muchos

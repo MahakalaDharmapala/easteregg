@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(GameSeeder::class);
 
-        Ticket::factory(10)->create();
+        $this->call(TicketSeeder::class);
 
         Sale::factory(10)->create();
     }

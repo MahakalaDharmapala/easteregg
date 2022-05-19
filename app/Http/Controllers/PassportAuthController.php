@@ -41,4 +41,22 @@ class PassportAuthController extends Controller
             return response()->json(['error'=>'Unauthorised'],401);
         }
     }
+
+    public function logout()
+    {
+        $access_token = auth()->user()->token();
+
+        // logout from only current device
+        $tokenRepository = app(TokenRepository::class);
+        $tokenRepository->revokeAccessToken($access_token->id);
+
+        // use this method to logout from all devices
+        // $refreshTokenRepository = app(RefreshTokenRepository::class);
+        // $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($$access_token->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User logout successfully.'
+        ], 200);
+    }
 }

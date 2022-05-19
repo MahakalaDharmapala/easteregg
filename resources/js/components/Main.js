@@ -7,7 +7,7 @@ import CatalogScreen from "./CatalogScreen"
 import RegisterForm from "./RegisterForm"
 import LogInScreen from "./LogInScreen"
 import SalesTable from "./SalesTable"
-import NavigationBarAdmin from "./NavigationBarAdmin";
+
 
 import {
     BrowserRouter as Router,
@@ -26,7 +26,7 @@ function Main(){
     return (
         <Router>
             <main>
-          <NavigationBarAdmin />
+        
                     <Routes>
                         
                         <Route exact path="/easteregg-1/public/" element={<CatalogScreen/>} />

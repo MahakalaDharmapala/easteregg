@@ -7,8 +7,9 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,useNavigate } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import NavigationBarAdmin from "./NavigationBarAdmin";
 
 
 
@@ -17,6 +18,8 @@ const EditGame = props => {
 
     const [data, setData] = useState([])
     const [isLoading, setLoading] = useState(false);
+    const location=useLocation();
+    const navigate=useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -35,13 +38,34 @@ const EditGame = props => {
 
         })();
     }, []);
+    function sendingAddGame() {
+             navigate("/easteregg-1/public/AddGame", {
 
+           state: {
+
+            u_token: location.state.u_token
+
+           },
+
+         });
+
+
+        alert(location.state.u_token);
+
+    }
 
                     
         return (
             <Container >
+                <NavigationBarAdmin 
+                u_token={location.state.u_token}/>
                 <h1 className="mt-5">Juegos</h1>
-                <Link as ={Link} to='/easteregg-1/public/AddGame'><Button className="mt-3" variant="warning">Agregar nuevo juego</Button></Link>
+                <Button className="mt-3" variant="warning"
+                onClick={() => {
+
+                    sendingAddGame();
+
+                }}>Agregar nuevo juego</Button>
                 <Table striped bordered hover variant="dark" className=" mr-5 my-3">
                     <thead>
                     <tr>

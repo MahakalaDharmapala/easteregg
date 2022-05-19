@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import { Container, Card, Button, Row, Col, Alert } from "react-bootstrap";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useSearchParams, useLocation } from "react-router-dom";
-import { isInteger } from "lodash";
+import { useLocation } from "react-router-dom";
+import NavigationBar from "./NavigationBar";
+import NavigationBarAdmin from "./NavigationBarAdmin";
 
 export default function CardGameSpecific(props) {
     const location = useLocation();
@@ -13,6 +14,7 @@ export default function CardGameSpecific(props) {
     //     findingBatch();
     // }, []);
 
+    console.log(location.state.u_role);
     //CURRENT DATE
     const current = new Date();
     let year = current.getFullYear();
@@ -40,7 +42,7 @@ export default function CardGameSpecific(props) {
     function findingBatch() {
         axios
             .get(
-                "https://localhost/easteregg-1/public/ticket/getBatch/'.$id.'",
+                "https://localhost/easteregg-1/public/api/ticket/getBatch/'.$id.'",
                 {
                     params: {
                         id: location.state.id,
@@ -73,13 +75,21 @@ export default function CardGameSpecific(props) {
             console.log("IMPOSIBLE CREAR UN TICKET CON EXISTENCIAS NEGATIVAS");
             return 0;
         } else {
+            var bodyParams = {
+                game_id: location.state.id,
+                date_purchase: currentDate,
+                batch: batch - inputValue,
+            };
             axios
                 .post(
-                    "https://localhost/easteregg-1/public/ticket/create_ticket",
+                    "https://localhost/easteregg-1/public/api/ticket/create_ticket",
+                    bodyParams,
                     {
-                        game_id: location.state.id,
-                        date_purchase: currentDate,
-                        batch: batch - inputValue,
+                        headers: {
+                            Authorization:
+                                "Bearer " + location.state.token.token,
+                            Accept: "application/json",
+                        },
                     }
                 )
                 .then(function (response) {
@@ -95,7 +105,7 @@ export default function CardGameSpecific(props) {
     function findingTicketID() {
         axios
             .get(
-                "https://localhost/easteregg-1/public/ticket/getBatch/'.$id.'",
+                "https://localhost/easteregg-1/public/api/ticket/getBatch/'.$id.'",
                 {
                     params: {
                         id: location.state.id,
@@ -115,15 +125,23 @@ export default function CardGameSpecific(props) {
         //CURRENT QUANTITY
         var inputValue = document.getElementById("quantityToBuy").value;
 
+        var bodyParams = {
+            user_id: location.state.user_id,
+            ticket_id: id,
+            quantity: inputValue,
+            mount: parseInt(location.state.price) * inputValue,
+            created_at: currentDate,
+        };
+
         axios
             .post(
-                "https://localhost/easteregg-1/public/sale/create_sale",
+                "https://localhost/easteregg-1/public/api/sale/create_sale",
+                bodyParams,
                 {
-                    user_id: 1,
-                    ticket_id: id,
-                    quantity: inputValue,
-                    mount: parseInt(location.state.price) * inputValue,
-                    created_at: currentDate,
+                    headers: {
+                        Authorization: "Bearer " + location.state.token.token,
+                        Accept: "application/json",
+                    },
                 }
             )
             .then(function (response) {
@@ -149,6 +167,25 @@ export default function CardGameSpecific(props) {
 
     return (
         <Container>
+            {location.state.user_role != 1 && location.state.user_role != 2 ? (
+                <NavigationBar />
+            ) : (
+                [
+                    location.state.user_role === 1 ? (
+                        <NavigationBar u_name={location.state.user_name} />
+                    ) : (
+                        [
+                            location.state.user_role === 2 ? (
+                                <NavigationBarAdmin
+                                    u_name={location.state.user_name}
+                                />
+                            ) : (
+                                <div>ERROR EN EL RENDERIZADO CONDICIONAL</div>
+                            ),
+                        ]
+                    ),
+                ]
+            )}
             <div
                 style={{
                     display: "flex",
@@ -178,7 +215,29 @@ export default function CardGameSpecific(props) {
                             <Card.ImgOverlay>
                                 <Button
                                     onClick={() => {
-                                        findingBatch();
+                                        if (location.state.token != undefined) {
+                                            if (
+                                                document.getElementById(
+                                                    "quantityToBuy"
+                                                ).value != null &&
+                                                document.getElementById(
+                                                    "quantityToBuy"
+                                                ).value > 0 &&
+                                                document.getElementById(
+                                                    "quantityToBuy"
+                                                ).value <= 50
+                                            ) {
+                                                findingBatch();
+                                            } else {
+                                                alert(
+                                                    "POR FAVOR INSERTA UNA CANTIDAD VALIDA (1 - 50)"
+                                                );
+                                            }
+                                        } else {
+                                            alert(
+                                                "NECESITAS ESTAR LOGGEADO PARA HACER UNA COMPRA"
+                                            );
+                                        }
                                     }}
                                     variant="success"
                                     style={{

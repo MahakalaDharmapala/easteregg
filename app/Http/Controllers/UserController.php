@@ -127,7 +127,11 @@ class UserController extends Controller
         $user = User::find(1);
         return $user->sale;
     }
-
+    public function gettingUserInfo(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        return $user;
+    }
 
     public function showToken(){
         echo csrf_token();

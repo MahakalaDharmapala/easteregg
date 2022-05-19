@@ -30,6 +30,10 @@ export default function CardGame(props) {
                 sinopsis: dataGame.sinopsis,
                 genre: dataGame.genre,
                 price: dataGame.price,
+                user_id: props.u_id,
+                user_name: props.u_name,
+                user_role: props.u_role,
+                token: props.u_token,
             },
         });
     };

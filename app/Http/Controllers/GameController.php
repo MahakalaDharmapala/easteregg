@@ -46,6 +46,7 @@ class GameController extends Controller
             'sinopsis' => 'required|max:500',
             'genre' => 'required|max:500',
             'price' => 'required',
+            'image'=> 'required',
         ]);
         if($validator->fails()){
             return $validator->errors();
@@ -58,8 +59,8 @@ class GameController extends Controller
         'releaseDay' => $request->releaseDay,
         'sinopsis' => $request->sinopsis,
         'genre' => $request->genre,
-        'price' => $request->price,/*,
-    'image' => $request->image*/]);
+        'price' => $request->price,
+    'image' => $request->image]);
         
     }
     
@@ -106,6 +107,8 @@ class GameController extends Controller
             'releaseDay' => 'required|max:255',
             'sinopsis' => 'required|max:500',
             'genre' => 'required|max:500',
+            'price' => 'required',
+            'image' => 'required',
         ]);
         if($validator->fails()){
             return $validator->errors();
@@ -118,9 +121,15 @@ class GameController extends Controller
         $game -> releaseDay =$request ->releaseDay;
         $game -> sinopsis =$request ->sinopsis;
         $game -> genre =$request ->genre;
+        $game -> price =$request ->price;
+        $game -> image=$request->image;
         $game-> save();
         $game = Game::all();
         return $game;
+    }
+    public function haveId(){
+        $game=Game::orderBy('id', 'desc')->first();
+        return $game; 
     }
 
     /**

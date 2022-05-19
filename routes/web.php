@@ -44,7 +44,9 @@ Route::get('/user', [UserController::class, 'index']);//Regresa un cliente
 Route::post('/user/create_user', [UserController::class, 'store']); //Guarda un nuevo cliente
 Route::post('/user/show', [UserController::class, 'show']); //Encuentra a un cliente
 Route::post('/user/delete', [UserController::class, 'destroy']); //Borra un cliente
-Route::post('/user/update', [UserController::class, 'update']); //Actualiza a un cliente
+Route::post('/user/update', [UserController::class, 'update']);
+Route::get('/user/userInfo/{email}', [UserController::class, 'gettingUserInfo']);
+ 
 
 //SALE CONTROLLER
 Route::post('/sale/create_sale',[SaleController::class,'store']);
@@ -78,36 +80,36 @@ Route::get('/sale/create_token', [SaleController::class, 'showToken']); //Crea u
     Route::get('/RegisterForm', function () {
         return view('welcome');
     });
-    Route::get('/SalesTable', function () {
-        return view('welcome');
-    });
+    // Route::get('/SalesTable', function () {
+    //     return view('welcome');
+    // });
     Route::get('/LogInScreen', function () {
         return view('welcome');
     });
-    Route::get('/EditGame', function () {
-        return view('welcome');
-    });
+    // Route::get('/EditGame', function () {
+    //     return view('welcome');
+    // });
 
     Route::get('/CatalogScreen', function () {
         return view('welcome');
     });
 
-    Route::get('/AddGame', function () {
-        return view('welcome');
-    });
+    // Route::get('/AddGame', function () {
+    //     return view('welcome');
+    // });
 
-    Route::get('/UpdateGame/{id}', function () {
-        return view('welcome');
-    });
+    // Route::get('/UpdateGame/{id}', function () {
+    //     return view('welcome');
+    // });
 
     Route::get('/gameSpecific', function () {
         return view('welcome');
     });
 
-    Route::get('/Users', function () {
-        return view('welcome');
-    });
+    // Route::get('/Users', function () {
+    //     return view('welcome');
+    // });
 
-    Route::get('/UpdateUsers/{id}', function () {
-        return view('welcome');
-    });
+    // Route::get('/UpdateUsers/{id}', function () {
+    //     return view('welcome');
+    // });

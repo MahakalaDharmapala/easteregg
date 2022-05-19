@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import NavigationBarAdmin from "./NavigationBarAdmin";
 
 
 const Users = props => {
@@ -37,6 +38,7 @@ const Users = props => {
             
         return (
             <Container >
+                <NavigationBarAdmin/>
                 
                 <h1 className="mt-5">Usuarios</h1>
                 

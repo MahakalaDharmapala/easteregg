@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import {
     Container,
@@ -11,7 +11,22 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function NavigationBarAdmin() {
+export default function NavigationBarAdmin(props) {
+    const navigate = useNavigate();
+
+    function toEditGameFunction(token) {
+
+        navigate("/easteregg-1/public/EditGame", {
+
+            state: {
+
+                u_token: props.u_token.token,
+
+            },
+
+        });
+
+    }
     return (
         <ThemeProvider
             breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
@@ -27,7 +42,7 @@ export default function NavigationBarAdmin() {
                         padding: 8,
                     }}
                 >
-                    <Navbar.Brand as={Link} to="/easteregg-1/public/">
+                    <Navbar.Brand as={Link} to="/easteregg-1/public">
                         <img
                             alt="EasterEggLogo"
                             src={"./images/logoEaster.png"}
@@ -36,16 +51,31 @@ export default function NavigationBarAdmin() {
                         ></img>
                     </Navbar.Brand>
                     <Navbar.Brand
-                    as={Link} to="/easteregg-1/public/"
+                        as={Link}
+                        to="/easteregg-1/public"
                         style={{ color: "black", fontSize: 40 }}
-                        
                     >
                         EasterEgg
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
-                    <Nav.Link
-                            as={Link} to="/easteregg-1/public/RegisterForm"
+                        {props.u_name === undefined ? (
+                            <p></p>
+                        ) : (
+                            <Nav.Item
+                                style={{
+                                    fontSize: 30,
+                                    paddingRight: 10,
+                                    color: "black",
+                                }}
+                            >
+                                Bienvenido de nuevo: {props.u_name}
+                            </Nav.Item>
+                        )}
+
+                        {/* <Nav.Link
+                            as={Link}
+                            to="/easteregg-1/public/RegisterForm"
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,
@@ -55,8 +85,10 @@ export default function NavigationBarAdmin() {
                             {" "}
                             Registrarse
                         </Nav.Link>
+
                         <Nav.Link
-                            as={Link} to="/easteregg-1/public/LogInScreen"
+                            as={Link}
+                            to="/easteregg-1/public/LogInScreen"
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,
@@ -65,9 +97,16 @@ export default function NavigationBarAdmin() {
                         >
                             {" "}
                             Iniciar sesión
-                        </Nav.Link>
+                        </Nav.Link> */}
+
                         <Nav.Link
-                            as={Link} to="/easteregg-1/public/EditGame"
+                            onClick={() => {
+
+                                
+
+                                toEditGameFunction();
+
+                            }}
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,
@@ -78,7 +117,8 @@ export default function NavigationBarAdmin() {
                             Games
                         </Nav.Link>
                         <Nav.Link
-                           as={Link} to="/easteregg-1/public/SalesTable"
+                            as={Link}
+                            to="/easteregg-1/public/SalesTable"
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,
@@ -89,8 +129,8 @@ export default function NavigationBarAdmin() {
                             Sales
                         </Nav.Link>
                         <Nav.Link
-                        as={Link} to="/easteregg-1/public/Users"
-                            href="#Users"
+                        as={Link}
+                        to="/easteregg-1/public/Users"
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,
@@ -100,32 +140,8 @@ export default function NavigationBarAdmin() {
                             {" "}
                             Users
                         </Nav.Link>
-                        <NavDropdown
-                            title="Platforms"
-                            id="collasible-nav-dropdown"
-                            style={{ color: "black", fontSize: 30 }}
-                        >
-                            <NavDropdown.Item
-                                href="#PlayStation"
-                                style={{ fontSize: 30 }}
-                            >
-                                PlayStation
-                            </NavDropdown.Item>
-                            <NavDropdown.Item
-                                href="#Xbox"
-                                style={{ fontSize: 30 }}
-                            >
-                                Xbox
-                            </NavDropdown.Item>
-                            <NavDropdown.Item
-                                href="#PC"
-                                style={{ fontSize: 30 }}
-                            >
-                                PC
-                            </NavDropdown.Item>
-                        </NavDropdown>
                         <Nav.Link
-                            href="#Logout"
+
                             style={{
                                 fontSize: 30,
                                 paddingRight: 10,

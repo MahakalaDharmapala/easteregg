@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Axios from 'axios';
+import NavigationBarAdmin from "./NavigationBarAdmin";
 
 
 
@@ -66,6 +67,7 @@ const UpdateUsers = () => {
     return (
         <div>
         <Container>
+        <NavigationBarAdmin/>
         <h1 className="mt-5">Actualizar Datos</h1>
             <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">

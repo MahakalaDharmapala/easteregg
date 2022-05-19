@@ -1,8 +1,10 @@
-import  React, {useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Button, Form, Container, Row, Col, Image } from "react-bootstrap";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+//1305
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LogInScreen = () => {
     const [formValue, setformValue] = useState({
@@ -10,12 +12,38 @@ const LogInScreen = () => {
         password: "",
     });
 
-    //let history = useNavigate();
-
     const onChange = (e) => {
         e.persist();
         setformValue({ ...formValue, [e.target.name]: e.target.value });
     };
+
+    const navigate = useNavigate();
+    //ESTO ENVIA LOS DATOS AL CATALOGSCREEN
+    function toCatalogScreen(tok) {
+        axios
+            .get(
+                "https://localhost/easteregg-1/public/user/userInfo/'.$email.'",
+                {
+                    params: {
+                        email: formValue.email,
+                    },
+                }
+            )
+            .then(function (response) {
+                console.log(response.data);
+                navigate("/easteregg-1/public/", {
+                    state: {
+                        u_token: tok,
+                        u_name: response.data.name,
+                        u_id: response.data.id,
+                        u_role: response.data.role,
+                    },
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     const handleSubmit = (e) => {
         if (e && e.preventDefault()) e.preventDefault();
@@ -25,15 +53,27 @@ const LogInScreen = () => {
         formData.append("password", formValue.password);
         console.log(formData);
         axios
-            .post("https://localhost/easteregg-1/public/api/login", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    Accept: "application/json",
-                },
-            })
+            .post(
+                "https://localhost/easteregg-1/public/api/login",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Accept: "application/json",
+                    },
+                }
+            )
             .then((response) => {
                 console.log("response");
                 console.log(formData);
+                console.log(response);
+                //AQUI, MANDAR A LLAMAR UN METODO PARA QUE REGRESE LOS VALORES DEL NOMBRE
+                //Y DEL ROL DEL USUARIO
+                //ABAJO USAR EL USE NAVIGATE PARA ENVIAR EL TOKEN, EL ROL Y EL NOMBRE,
+                //INTENTA PRIMERO SOLO CON EL ROL Y EL TOKEN, AUNQUE SI RETORNAS EL OBJETO
+                //COMPLETO, DEBERÍAS PODER ACCEDER AL NOMBRE Y A TODOS LOS DATOS DEL USUARIO.
+                //LUEGO MANDALO A LA PÁGINA PRINCIPAL DE CATALOGSCREEN
+                toCatalogScreen(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -106,5 +146,3 @@ const LogInScreen = () => {
 };
 
 export default LogInScreen;
-
-

@@ -23,9 +23,11 @@ use App\Http\Controllers\GameController;
 
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+    Route::post('/ticket/create_ticket', [TicketController::class, 'store']);
+    Route::post('/sale/create_sale', [SaleController::class, 'store']);
 });
+Route::post('/logout', [PassportAuthController::class, 'logout']);
 Route::post('/create_student', [StudentController::class, 'store']);
 Route::post('/user/create_user', [UserController::class, 'store']);
 
@@ -37,4 +39,8 @@ Route::get('ticket', [TicketController::class, 'index']);
 Route::post('game',[GameController::class,'store']);
 Route::post('/game/update',[GameController::class,'update']);
 Route::get('user', [UserController::class, 'index']);
-Route::post('user/update', [UserController::class, 'update']); //Actualiza a un cliente
+Route::post('user/update', [UserController::class, 'update']);
+Route::get('/ticket/getBatch/{id}', [TicketController::class, 'getBatch']);
+Route::get('ticket', [TicketController::class, 'index']);
+
+Route::get('/game/haveId',[GameController::class,'haveId']);

@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Axios from 'axios';
+import NavigationBarAdmin from "./NavigationBarAdmin";
 
 
 
@@ -11,6 +12,7 @@ import Axios from 'axios';
 const UpdateGame = () => {
     
     const [formValue, setformValue] = useState({
+        id:'',
         title: '',
         platform:'',
         classification: '',
@@ -18,7 +20,8 @@ const UpdateGame = () => {
         releaseDay: '',
         sinopsis: '',
         genre: '',
-        price: ''
+        price: '',
+        image:'',
         
     })
 
@@ -47,6 +50,7 @@ const UpdateGame = () => {
         formData.append("sinopsis", formValue.sinopsis)
         formData.append("genre", formValue.genre)
         formData.append("price", formValue.price)
+        formData.append("image", formValue.image)
 
         axios.post("https://localhost/easteregg-1/public/api/game/update", 
         formData, {
@@ -71,6 +75,7 @@ const UpdateGame = () => {
             
     return (
         <Container fluid>
+            <NavigationBarAdmin/>
         <h1 className="mt-5">Actualizar datos del Juego </h1>
         <Row xl={1} className=" m-5 " >
             <Form  onSubmit={handleSubmit} key={formValue.id}>
@@ -112,6 +117,11 @@ const UpdateGame = () => {
                     <Form.Group className=" mr-5" controlId="">
                         <Form.Label>Genero:</Form.Label>
                             <Form.Control type="text" placeholder='Ingrese el genero del juego' name="genre"  value={formValue.genre} onChange={onChange}>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group className=" mr-5" controlId="">
+                        <Form.Label>imagen:</Form.Label>
+                            <Form.Control type="text" placeholder='Ingrese la imagen del juego' name="image"  value={formValue.image} onChange={onChange}>
                         </Form.Control>
                     </Form.Group>
                     <Form.Group className=" mr-5" controlId="">

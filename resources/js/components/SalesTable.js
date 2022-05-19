@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import NavigationBarAdmin from "./NavigationBarAdmin";
 
 
 const SalesTable = props => {
@@ -56,7 +57,7 @@ const SalesTable = props => {
             
         return (
             <Container >
-                
+                <NavigationBarAdmin/>
                 <h1 className="mt-5">Ventas</h1>
                 
                 <Table striped bordered hover variant="dark" className=" mr-5 my-3">

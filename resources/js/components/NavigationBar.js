@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 import {
     Button,
     Form,
@@ -17,7 +18,7 @@ import {
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
     return (
         <ThemeProvider
             breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
@@ -33,7 +34,7 @@ export default function NavigationBar() {
                         padding: 8,
                     }}
                 >
-                    <Navbar.Brand href="#Home">
+                    <Navbar.Brand as={Link} to="/easteregg-1/public/">
                         <img
                             alt="EasterEggLogo"
                             src={"./images/logoEaster.png"}
@@ -42,48 +43,77 @@ export default function NavigationBar() {
                         ></img>
                     </Navbar.Brand>
                     <Navbar.Brand
+                        as={Link}
+                        to="/easteregg-1/public/"
                         style={{ color: "black", fontSize: 40 }}
-                        href="#home"
                     >
                         EasterEgg
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
-                        <NavDropdown
-                            title="Platforms"
-                            id="collasible-nav-dropdown"
-                            style={{ color: "black", fontSize: 30 }}
-                        >
-                            <NavDropdown.Item
-                                href="#PlayStation"
-                                style={{ fontSize: 30 }}
+                        {props.u_name === undefined ? (
+                            <p></p>
+                        ) : (
+                            <Nav.Item
+                                style={{
+                                    fontSize: 30,
+                                    paddingRight: 10,
+                                    color: "black",
+                                }}
                             >
-                                PlayStation
-                            </NavDropdown.Item>
-                            <NavDropdown.Item
-                                href="#Xbox"
-                                style={{ fontSize: 30 }}
+                                Bienvenido de nuevo: {props.u_name}
+                            </Nav.Item>
+                        )}
+
+                        {props.u_name != undefined ? (
+                            <p></p>
+                        ) : (
+                            <Nav.Link
+                                as={Link}
+                                to="/easteregg-1/public/RegisterForm"
+                                style={{
+                                    fontSize: 30,
+                                    paddingRight: 10,
+                                    color: "black",
+                                }}
                             >
-                                Xbox
-                            </NavDropdown.Item>
-                            <NavDropdown.Item
-                                href="#PC"
-                                style={{ fontSize: 30 }}
+                                {" "}
+                                Registrarse
+                            </Nav.Link>
+                        )}
+
+                        {props.u_name != undefined ? (
+                            <p></p>
+                        ) : (
+                            <Nav.Link
+                                as={Link}
+                                to="/easteregg-1/public/LogInScreen"
+                                style={{
+                                    fontSize: 30,
+                                    paddingRight: 10,
+                                    color: "black",
+                                }}
                             >
-                                PC
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link
-                            href="#Logout"
-                            style={{
-                                fontSize: 30,
-                                paddingRight: 10,
-                                color: "black",
-                            }}
-                        >
-                            {" "}
-                            LogOut
-                        </Nav.Link>
+                                {" "}
+                                Iniciar sesión
+                            </Nav.Link>
+                        )}
+
+                        {props.u_name === undefined ? (
+                            <p></p>
+                        ) : (
+                            <Nav.Link
+                                href="#Logout"
+                                style={{
+                                    fontSize: 30,
+                                    paddingRight: 10,
+                                    color: "black",
+                                }}
+                            >
+                                {" "}
+                                LogOut
+                            </Nav.Link>
+                        )}
                     </Navbar.Collapse>
                 </Navbar>
             </Container>
