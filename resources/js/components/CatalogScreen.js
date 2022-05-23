@@ -39,7 +39,9 @@ const CatalogScreen = () => {
             ) : (
                 [
                     location.state.u_role === 1 ? (
-                        <NavigationBar u_name={location.state.u_name} />
+                        <NavigationBar 
+                        u_token={location.state.u_token}
+                        u_name={location.state.u_name} />
                     ) : (
                         [
                             location.state.u_role === 2 ? (

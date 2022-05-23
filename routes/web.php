@@ -80,9 +80,9 @@ Route::get('/sale/create_token', [SaleController::class, 'showToken']); //Crea u
     Route::get('/RegisterForm', function () {
         return view('welcome');
     });
-    // Route::get('/SalesTable', function () {
-    //     return view('welcome');
-    // });
+     Route::get('/SalesTable', function () {
+        return view('welcome');
+     });
     Route::get('/LogInScreen', function () {
         return view('welcome');
     });

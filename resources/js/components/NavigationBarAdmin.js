@@ -27,6 +27,30 @@ export default function NavigationBarAdmin(props) {
         });
 
     }
+    function toLogOut(){
+        axios.get(
+            "https://localhost/easteregg-1/public/api/logout",
+            {
+                params:{
+                    u_token: props.u_token.token,
+                }
+            }
+        )
+        .then(function (response) {
+            
+            alert("Se ha cerrado la sesion");
+            navigate("/easteregg-1/public/");
+            
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert("Hubo un error al salir");
+        });
+}
+           
+        
+
+       
     return (
         <ThemeProvider
             breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
@@ -141,6 +165,11 @@ export default function NavigationBarAdmin(props) {
                             Users
                         </Nav.Link>
                         <Nav.Link
+                        onClick={() => {                                
+
+                        toLogOut();
+                        
+                             }}
 
                             style={{
                                 fontSize: 30,

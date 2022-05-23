@@ -21,13 +21,15 @@ use App\Http\Controllers\GameController;
 */
 
 
-
+Route::group(['middleware' => ['web']],function(){
+    Route::get('/logout', [PassportAuthController::class, 'logout']);
+});
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/ticket/create_ticket', [TicketController::class, 'store']);
     Route::post('/sale/create_sale', [SaleController::class, 'store']);
 });
-Route::post('/logout', [PassportAuthController::class, 'logout']);
+
 Route::post('/create_student', [StudentController::class, 'store']);
 Route::post('/user/create_user', [UserController::class, 'store']);
 

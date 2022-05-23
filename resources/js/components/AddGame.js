@@ -58,6 +58,7 @@ const AddGame =(props)=>{
                 })
                 .catch(function (error) {
                     console.log(error);
+                    
                 });
         }
     function haveId(){

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import {
     Button,
     Form,
@@ -18,7 +18,30 @@ import {
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
+
 export default function NavigationBar(props) {
+    const navigate = useNavigate();
+    function toLogOut(){
+        axios.get(
+            "https://localhost/easteregg-1/public/api/logout",
+            {
+                params:{
+                    u_token: props.u_token.token,
+                }
+            }
+        )
+        .then(function (response) {
+            
+            alert("Se ha cerrado la sesion");
+            navigate("/easteregg-1/public/");
+            
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert("Hubo un error al salir");
+        });
+    }
     return (
         <ThemeProvider
             breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
@@ -103,7 +126,11 @@ export default function NavigationBar(props) {
                             <p></p>
                         ) : (
                             <Nav.Link
-                                href="#Logout"
+                            onClick={() => {                                
+
+                                toLogOut();
+                                
+                                     }}
                                 style={{
                                     fontSize: 30,
                                     paddingRight: 10,

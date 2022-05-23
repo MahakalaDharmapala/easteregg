@@ -8019,6 +8019,7 @@ var CatalogScreen = function CatalogScreen() {
       marginBottom: "10rem"
     },
     children: [location.state === null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_NavigationBar__WEBPACK_IMPORTED_MODULE_5__["default"], {}) : [location.state.u_role === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_NavigationBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      u_token: location.state.u_token,
       u_name: location.state.u_name
     }) : [location.state.u_role === 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_NavigationBarAdmin__WEBPACK_IMPORTED_MODULE_6__["default"], {
       u_token: location.state.u_token,
@@ -8546,6 +8547,7 @@ var LogInScreen = function LogInScreen() {
       });
     })["catch"](function (error) {
       console.log(error);
+      alert("Hubo un error en los datos del usuario");
     });
   }
 
@@ -8574,6 +8576,7 @@ var LogInScreen = function LogInScreen() {
       toCatalogScreen(response.data);
     })["catch"](function (error) {
       console.log(error);
+      alert("Hubo un error en Login");
     });
   };
 
@@ -8767,11 +8770,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
@@ -8785,11 +8789,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function NavigationBar(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+
+  function toLogOut() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("https://localhost/easteregg-1/public/api/logout", {
+      params: {
+        u_token: props.u_token.token
+      }
+    }).then(function (response) {
+      alert("Se ha cerrado la sesion");
+      navigate("/easteregg-1/public/");
+    })["catch"](function (error) {
+      console.log(error);
+      alert("Hubo un error al salir");
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     breakpoints: ["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"],
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       fluid: true,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
         expand: "lg",
         sticky: "top",
         style: {
@@ -8798,8 +8818,8 @@ function NavigationBar(props) {
           fontFamily: ["Teko", "sans-serif"],
           padding: 8
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Brand, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Brand, {
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link,
           to: "/easteregg-1/public/",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
             alt: "EasterEggLogo",
@@ -8807,25 +8827,25 @@ function NavigationBar(props) {
             height: 60,
             className: "d-inline-block align-top"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Brand, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link,
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Brand, {
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link,
           to: "/easteregg-1/public/",
           style: {
             color: "black",
             fontSize: 40
           },
           children: "EasterEgg"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Toggle, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Collapse, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Toggle, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Collapse, {
           className: "justify-content-end",
-          children: [props.u_name === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Item, {
+          children: [props.u_name === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Item, {
             style: {
               fontSize: 30,
               paddingRight: 10,
               color: "black"
             },
             children: ["Bienvenido de nuevo: ", props.u_name]
-          }), props.u_name != undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
-            as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link,
+          }), props.u_name != undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Link, {
+            as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link,
             to: "/easteregg-1/public/RegisterForm",
             style: {
               fontSize: 30,
@@ -8833,8 +8853,8 @@ function NavigationBar(props) {
               color: "black"
             },
             children: [" ", "Registrarse"]
-          }), props.u_name != undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
-            as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link,
+          }), props.u_name != undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Link, {
+            as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link,
             to: "/easteregg-1/public/LogInScreen",
             style: {
               fontSize: 30,
@@ -8842,8 +8862,10 @@ function NavigationBar(props) {
               color: "black"
             },
             children: [" ", "Iniciar sesi\xF3n"]
-          }), props.u_name === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
-            href: "#Logout",
+          }), props.u_name === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Link, {
+            onClick: function onClick() {
+              toLogOut();
+            },
             style: {
               fontSize: 30,
               paddingRight: 10,
@@ -8895,6 +8917,20 @@ function NavigationBarAdmin(props) {
       state: {
         u_token: props.u_token.token
       }
+    });
+  }
+
+  function toLogOut() {
+    axios.get("https://localhost/easteregg-1/public/api/logout", {
+      params: {
+        u_token: props.u_token.token
+      }
+    }).then(function (response) {
+      alert("Se ha cerrado la sesion");
+      navigate("/easteregg-1/public/");
+    })["catch"](function (error) {
+      console.log(error);
+      alert("Hubo un error al salir");
     });
   }
 
@@ -8966,6 +9002,9 @@ function NavigationBarAdmin(props) {
             },
             children: [" ", "Users"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
+            onClick: function onClick() {
+              toLogOut();
+            },
             style: {
               fontSize: 30,
               paddingRight: 10,

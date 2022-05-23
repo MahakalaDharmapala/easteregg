@@ -42,6 +42,7 @@ const LogInScreen = () => {
             })
             .catch(function (error) {
                 console.log(error);
+                alert("Hubo un error en los datos del usuario");
             });
     }
 
@@ -77,6 +78,7 @@ const LogInScreen = () => {
             })
             .catch((error) => {
                 console.log(error);
+                alert("Hubo un error en Login");
             });
     };
 

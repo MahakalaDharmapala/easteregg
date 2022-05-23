@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class PassportAuthController extends Controller
@@ -42,21 +43,14 @@ class PassportAuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        $access_token = auth()->user()->token();
+        Auth::logout();
 
-        // logout from only current device
-        $tokenRepository = app(TokenRepository::class);
-        $tokenRepository->revokeAccessToken($access_token->id);
+        $request->session()->invalidate();
 
-        // use this method to logout from all devices
-        // $refreshTokenRepository = app(RefreshTokenRepository::class);
-        // $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($$access_token->id);
+        $request->session()->regenerateToken();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'User logout successfully.'
-        ], 200);
+        return redirect('/LogInScreen');
     }
 }
